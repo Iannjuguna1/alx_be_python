@@ -7,42 +7,45 @@ def display_menu():
 
 def main():
     shopping_list = []
-    
+
     while True:
         display_menu()
-        choice = input("Enter your choice: ").strip()
 
-        if choice == '1':
+        try:
+            choice = int(input("Enter your choice (1-4): "))
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
+
+        if choice == 1:
             item = input("Enter the item to add: ").strip()
             if item:
                 shopping_list.append(item)
-                print(f"'{item}' has been added to your shopping list.")
+                print(f"'{item}' has been added.")
             else:
                 print("Item name cannot be empty.")
 
-        elif choice == '2':
+        elif choice == 2:
             item = input("Enter the item to remove: ").strip()
             if item in shopping_list:
                 shopping_list.remove(item)
-                print(f"'{item}' has been removed from your shopping list.")
+                print(f"'{item}' has been removed.")
             else:
-                print(f"'{item}' not found in your shopping list.")
+                print(f"'{item}' not found in your list.")
 
-        elif choice == '3':
+        elif choice == 3:
             if shopping_list:
                 print("\nYour Shopping List:")
-                for idx, item in enumerate(shopping_list, 1):
-                    print(f"{idx}. {item}")
+                for i, item in enumerate(shopping_list, 1):
+                    print(f"{i}. {item}")
             else:
-                print("Your shopping list is currently empty.")
+                print("Your shopping list is empty.")
 
-        elif choice == '4':
+        elif choice == 4:
             print("Goodbye!")
             break
-
         else:
-            print("Invalid choice. Please try again.")
+            print("Invalid choice. Please enter 1-4.")
 
 if __name__ == "__main__":
     main()
-
